@@ -8,6 +8,7 @@
 
 #include "construction.hh"
 #include "physics.hh"
+#include "action.hh"
 
 int main(int argc, char** argv) {
  
@@ -15,6 +16,8 @@ int main(int argc, char** argv) {
     
     runManager->SetUserInitialization(new MyDetectorConstruction());
     runManager->SetUserInitialization(new MyPhysicsList());
+    runManager->SetUserInitialization(new MyActionInitialization());
+
 
     runManager->Initialize();
     
@@ -25,10 +28,12 @@ int main(int argc, char** argv) {
     //get the pointer to the User Interface manager // Mandatory
     G4UImanager *UImanager = G4UImanager::GetUIpointer();
 
-    UImanager->ApplyCommand("/vis/open OGL 600x600-0+0");
+    UImanager->ApplyCommand("/vis/open OGL");
     UImanager->ApplyCommand("/vis/viewer/setviewpointVector 1 1 1");
     UImanager->ApplyCommand("/vis/drawVolume");
-
+    UImanager->ApplyCommand("/vis/viewer/set/autoRefresh true");
+    UImanager->ApplyCommand("/vis/scene/add/trajectories smooth");
+    UImanager->ApplyCommand("/vis/scene/endOfEventAction accumulate");
 
     ui->SessionStart();
 
