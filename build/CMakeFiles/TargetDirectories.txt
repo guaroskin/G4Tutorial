@@ -1,4 +1,0 @@
-/home/guaro/work/GEANT4/My_projects/G4example02/build/CMakeFiles/exa02.dir
-/home/guaro/work/GEANT4/My_projects/G4example02/build/CMakeFiles/G4example02.dir
-/home/guaro/work/GEANT4/My_projects/G4example02/build/CMakeFiles/edit_cache.dir
-/home/guaro/work/GEANT4/My_projects/G4example02/build/CMakeFiles/rebuild_cache.dir
