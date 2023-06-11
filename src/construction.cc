@@ -19,7 +19,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
     G4Material *worldMat = nist->FindOrBuildMaterial("G4_AIR");
 
     //conversion factor [ev] / wavelength [mu_m] (blue 200 nm, red 900 nm) 
-    G4double energy[2] = {1.239841939*eV/0.2, 1.239841939*eV/0.9};
+    G4double energy[2] = {1.239841939*eV/0.9, 1.239841939*eV/0.2};
     //refractive index for world
     G4double rindexWorld[2] = {1.0, 1.0};
 
