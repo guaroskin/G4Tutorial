@@ -21,22 +21,31 @@ int main(int argc, char** argv) {
 
     runManager->Initialize();
     
-    G4UIExecutive *ui = new G4UIExecutive(argc, argv);
+    G4UIExecutive *ui = 0;
+    
+    if(argc == 1) 
+    {
+        ui = new G4UIExecutive(argc, argv);
+
+    }
 
     G4VisManager *visManager = new G4VisExecutive();
     visManager->Initialize();
-    //get the pointer to the User Interface manager // Mandatory
+
     G4UImanager *UImanager = G4UImanager::GetUIpointer();
 
-    UImanager->ApplyCommand("/vis/open OGL");
-    UImanager->ApplyCommand("/vis/viewer/setviewpointVector 1 1 1");
-    UImanager->ApplyCommand("/vis/drawVolume");
-    UImanager->ApplyCommand("/vis/viewer/set/autoRefresh true");
-    UImanager->ApplyCommand("/vis/scene/add/trajectories smooth");
-    UImanager->ApplyCommand("/vis/scene/endOfEventAction accumulate");
-    UImanager->ApplyCommand("/vis/viewer/set/style surface");
-
-    ui->SessionStart();
+    if(ui)
+    {
+        UImanager->ApplyCommand("/control/execute vis.mac");
+        ui->SessionStart();
+    }
+    else
+    {
+        G4String command = "/control/execute ";
+        G4String fileName = argv[1];
+        UImanager->ApplyCommand(command+fileName);
+    }
+    
 
     return 0;
 }
