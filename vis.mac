@@ -6,4 +6,4 @@
 /vis/scene/add/scale 10 cm
 /vis/scene/add/axes
 /vis/scene/endOfEventAction accumulate
-# /vis/viewer/set/style surface
+/vis/viewer/set/style surface
