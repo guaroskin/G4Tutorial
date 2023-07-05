@@ -6,8 +6,8 @@ MyRunAction::MyRunAction()
 
     man->CreateNtuple("Hits", "Hits");
     man->CreateNtupleIColumn("fEvent");
-    man->CreateNtupleDColumn("fY");
     man->CreateNtupleDColumn("fX");
+    man->CreateNtupleDColumn("fY");
     man->CreateNtupleDColumn("fZ");
     man->FinishNtuple(0);
 }
