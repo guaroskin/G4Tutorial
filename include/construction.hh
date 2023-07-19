@@ -20,25 +20,26 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
     MyDetectorConstruction();
     ~MyDetectorConstruction();
 
+    G4LogicalVolume *GetScoringVolume() const { return fScoringVolume; }
+
     virtual G4VPhysicalVolume *Construct();
 
   private:
-    G4LogicalVolume *logicDetector;
-    virtual void ConstructSDandField();
-
-    G4int nCols, nRows;
-
     //Create the geometry
     G4Box *solidWorld, *solidRadiator, *solidDetector;
-    G4LogicalVolume *logicWorld, *logicRadiator;
+    G4LogicalVolume *logicWorld, *logicRadiator, *logicDetector;
     G4VPhysicalVolume *physWorld, *physRadiator, *physDetector;
-
-    G4GenericMessenger *fMessenger;
 
     G4Material *worldMat, *Si02, *H20, *Aerogel;
     G4Element *C;
 
+    virtual void ConstructSDandField();
     void DefineMaterials();
+
+    G4GenericMessenger *fMessenger;
+    G4int nCols, nRows;
+
+    G4LogicalVolume *fScoringVolume;
 
 };
 
