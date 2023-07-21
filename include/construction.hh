@@ -4,6 +4,7 @@
 
 #include "G4VUserDetectorConstruction.hh"
 #include "G4Box.hh"
+#include "G4Tubs.hh"
 #include "G4LogicalVolume.hh"
 #include "G4VPhysicalVolume.hh"
 #include "G4PVPlacement.hh"
@@ -27,19 +28,28 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
   private:
     //Create the geometry
     G4Box *solidWorld, *solidRadiator, *solidDetector;
-    G4LogicalVolume *logicWorld, *logicRadiator, *logicDetector;
-    G4VPhysicalVolume *physWorld, *physRadiator, *physDetector;
+    G4Tubs *solidScintillator;
+    G4LogicalVolume *logicWorld, *logicRadiator, *logicDetector, *logicScintillator;
+    G4VPhysicalVolume *physWorld, *physRadiator, *physDetector, *physScintillator;
 
-    G4Material *worldMat, *Si02, *H20, *Aerogel;
-    G4Element *C;
+    G4Material *worldMat, *Si02, *H20, *Aerogel, *NaI;
+    G4Element *C, *Na, *I;
 
-    virtual void ConstructSDandField();
     void DefineMaterials();
 
-    G4GenericMessenger *fMessenger;
-    G4int nCols, nRows;
+    void ConstructCherenkov();
+    void ConstructScintillator();
+
+
+    virtual void ConstructSDandField();
 
     G4LogicalVolume *fScoringVolume;
+    G4GenericMessenger *fMessenger;
+
+    G4int nCols, nRows;
+
+    G4double xWorld, yWorld, zWorld;
+    G4bool isCherenkov, isScintillator;
 
 };
 
